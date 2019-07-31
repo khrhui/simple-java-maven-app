@@ -3,14 +3,14 @@ pipeline {
     
     stages {
         stage('Build') {
+            def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
-                def mvnHome = tool name: 'maven-3', type: 'maven'
                 sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
             }
         }
         stage('Test') {
+            def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
-                def mvnHome = tool name: 'maven-3', type: 'maven'
                 sh "${mvnHome}/bin/mvn test"
             }
             post {
