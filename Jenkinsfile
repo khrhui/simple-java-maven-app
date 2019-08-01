@@ -1,17 +1,17 @@
 pipeline {
     agent any
-    
+    tools {
+        maven 'maven-3'
+    }
     stages {
         stage('Build') {
-            def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
-                sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
-            def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
-                sh "${mvnHome}/bin/mvn test"
+                sh 'mvn test'
             }
             post {
                 always {
